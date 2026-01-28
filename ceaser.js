@@ -13,5 +13,26 @@ function decrypt(text, shift) {
     return encrypt(text, -shift);
 }
 
-console.log(encrypt("eric", 3));
-console.log(decrypt(encrypt("eric", 3), 3));
+const args = process.argv.slice(2);
+
+if (args.length !== 3) {
+    console.log('Usage: node ceaser.js <encrypt|decrypt> "<text>" <shift>');
+    process.exit(1);
+}
+
+const [command, text, shiftStr] = args;
+const shift = parseInt(shiftStr, 10);
+
+if (isNaN(shift)) {
+    console.log('Error: Shift must be a number');
+    process.exit(1);
+}
+
+if (command === 'encrypt') {
+    console.log(encrypt(text, shift));
+} else if (command === 'decrypt') {
+    console.log(decrypt(text, shift));
+} else {
+    console.log('Error: Command must be "encrypt" or "decrypt"');
+    process.exit(1);
+}
