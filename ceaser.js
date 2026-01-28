@@ -8,7 +8,7 @@ function encrypt(text, shift) {
         return char;
     }).join('');
 }
-
+git 
 function decrypt(text, shift) {
     return encrypt(text, -shift);
 }
